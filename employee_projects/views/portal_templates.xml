@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="portal_my_projects" name="My Projects">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>My Projects</h1>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Project Name</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="projects" t-as="project">
+                            <tr>
+                                <td>
+                                    <a t-attf-href="/my/projects/{{ project.id }}">
+                                        <t t-esc="project.name"/>
+                                    </a>
+                                </td>
+                                <td><t t-esc="project.start_date"/></td>
+                                <td><t t-esc="project.end_date"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_project_detail" name="Project Detail">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1><t t-esc="project.name"/></h1>
+                <p><strong>Description:</strong> <t t-esc="project.description"/></p>
+                <p><strong>Start Date:</strong> <t t-esc="project.start_date"/></p>
+                <p><strong>End Date:</strong> <t t-esc="project.end_date"/></p>
+            </div>
+        </t>
+    </template>
+
+    <record id="menu_my_projects" model="website.menu">
+        <field name="name">My Projects</field>
+        <field name="url">/my/projects</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">70</field>
+    </record>
+
+</odoo> 
