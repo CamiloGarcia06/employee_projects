@@ -6,7 +6,6 @@ class EmployeeProjectPortal(http.Controller):
 
     @http.route(["/my/projects"], type="http", auth="public", website=True)
     def portal_my_projects(self, **kw):
-        employee = request.env.user.employee_id
         projects = request.env["employee.project"].sudo().search(
             []
         )
